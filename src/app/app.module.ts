@@ -11,6 +11,12 @@ import { AllTemplateUserComponent } from './FrontOffice/all-template-user/all-te
 import { BodyUserComponent } from './FrontOffice/body-user/body-user.component';
 import { FotterUserComponent } from './FrontOffice/fotter-user/fotter-user.component';
 import { HeaderUserComponent } from './FrontOffice/header-user/header-user.component';
+import { PageNotFoundComponent } from './FrontOffice/page-not-found/page-not-found.component';
+import { ForbiddenComponent } from './FrontOffice/forbidden/forbidden.component';
+import { TestAccesComponent } from './test-acces/test-acces.component';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,11 +29,18 @@ import { HeaderUserComponent } from './FrontOffice/header-user/header-user.compo
     AllTemplateUserComponent,
     BodyUserComponent,
     FotterUserComponent,
-    HeaderUserComponent
+    HeaderUserComponent,
+    TestAccesComponent,
+    ForbiddenComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule, 
+    ReactiveFormsModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

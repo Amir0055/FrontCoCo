@@ -29,7 +29,8 @@
                         </div>
 
                         <div class="header-btn text-center text-lg-end">
-                           <a href="#"> <i class="fa fa-user-alt"></i> Login/Register</a>
+                           <a *ngIf="! isLoggedIn()" routerLink="/user/login"> <i class="fa fa-user-alt"></i> Login/Register</a>
+                           <a *ngIf=" isLoggedIn()" routerLink="/user/login" (click)="logout()"> <i class="fa fa-user-alt"></i> Logout</a>
                         </div>
                    </div>
                 </div>
