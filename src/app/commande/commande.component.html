@@ -1,0 +1,38 @@
+<div class="body table-responsive">
+    <div class="woocommerce-notices-wrapper">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                
+                <th>date de commande</th>
+                <th>description</th>
+                <th>Payment method</th>
+                <th>Products number</th>
+                <th>shop_name</th> 
+                <th>total weight</th>
+                <th>tax</th>
+                <th>total price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let u of listCommandes">
+                
+                <td>{{u.dateCmd}}</td>
+                <td>{{u.description}}</td>
+                <td>{{u.methode}}</td>
+                <td>{{u.nbProd}}</td>
+                <td>{{u.shopName}}</td>
+                <td>{{u.totalWeight}}</td>
+                <td>{{u.tax}}</td>
+                <td>{{u.totalPrice}}</td>
+                <td>
+                    <button (click)="deleteCommande(u.id)">DELETE</button>
+                    <button (click)="getCommandebyid(idCart,u.id)">AFFICHER</button>
+                    <button (click)="effectuerPaiement(u.id,u.currency,token)">ACHETER</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

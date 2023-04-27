@@ -1,0 +1,34 @@
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Référence</th>
+      <th>Nom</th>
+      <th>Image</th>
+      <th>Description</th>
+      <th>Prix</th>
+      <th>Poids</th>
+      <th>Etats Produit</th>
+      <th>Date de publication</th>
+      <th>Quantité vendue</th>
+      <th>Pourcentage de promotion</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of product">
+      <td>{{product.id}}</td>
+      <td>{{product.Reference}}</td>
+      <td>{{product.nom}}</td>
+      <td><img [src]="product.img" alt="{{product.nom}}"></td>
+      <td>{{product.description}}</td>
+      <td>{{product.prix}}</td>
+      <td>{{product.weight}}</td>
+      <td>{{product.EtatsProduit}}</td>
+      <td>{{product.datePublication}}</td>
+      <td>{{product.quantiteVendue}}</td>
+      <td>{{product.pourcentagePromotion}}</td>
+      <td><button (click)="addToCart(product.id)">Ajouter au panier</button></td>
+    </tr>
+  </tbody>
+</table>
