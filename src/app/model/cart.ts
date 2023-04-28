@@ -1,5 +1,6 @@
 
 import { Commande } from './commande';
+import { Produit_Cart } from './produit-cart';
 
 export class Cart {
 
@@ -7,6 +8,7 @@ export class Cart {
   nbProd!: number;
   totalPrice!: number;
   totalWeight!: number;
+  Items!: Produit_Cart[];
   commandes!: Commande[];
 
 }

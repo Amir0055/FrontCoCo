@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CartService } from '../shared/cart.service';
 import { Product } from '../model/product';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -6,6 +6,7 @@ import { CommandeService } from '../shared/commande.service';
 import { Commande } from '../model/commande';
 import { Router } from '@angular/router';
 import { ProductService } from '../shared/product.service';
+import { Produit_Cart } from '../model/produit-cart';
 
 @Component({
   selector: 'app-cart',
@@ -16,6 +17,15 @@ export class CartComponent implements OnInit {
   idCart:number =1 ; // L'ID du panier 
 
   products: Product[] = [];
+   /* new Product(1),
+    new Product(2)
+  ];*/
+
+  produitcart:Produit_Cart[]=[
+    new Produit_Cart(1,1),
+    new Produit_Cart(1,2)
+  ] ;
+
   listCommandes:Commande[] = [] ; 
   prod!:Product ;
 
@@ -23,14 +33,14 @@ export class CartComponent implements OnInit {
   numProducts!: number;
   totalprice!:number ;
 
-  quantity?:number ;
-  produitId: number =2;
+  //quantiti?:number ;
+
 
   
 
-  constructor(private cartService: CartService, private commandeService: CommandeService,private R:Router,private Prodservice :ProductService) { }
+  constructor(public cartService: CartService, private commandeService: CommandeService,private R:Router,private Prodservice :ProductService,private cdr: ChangeDetectorRef) { }
 
-  ngOnInit() {
+  ngOnInit():void {
     this.cartService.getProductsFromCart(this.idCart)
       .subscribe( (response: Product[]) => {
         this.products=response ;
@@ -53,19 +63,73 @@ export class CartComponent implements OnInit {
         error => console.log(error)
       );
 
-      this.cartService.getquantity(cartId,this.produitId).subscribe(
-        quantity => this.quantity = quantity,
-        error => console.log(error)
-      );
+    /*  for (const product of this.produitcart) {
+        this.cartService.getquantity(cartId, product.produit)
+          .subscribe(quantity => {
+            product.quantity = quantity;
+            this.cdr.detectChanges();
+            console.log(quantity)
+          });
+        }*/
 
+        this.getQuantities().then(quantities => {
+          console.log(quantities); // liste de quantités de produits
+        }).catch(error => {
+          console.error(error);
+        });
+     
 
    
   }
 
+  quantities: {[key: number]: number} = {};
+
+/*getQuantities(): void {
+  for (const product of this.produitcart) {
+    this.cartService.getquantity(this.idCart, product.produit)
+      .subscribe(quantity => {
+        product.quantity = quantity;
+        this.cdr.detectChanges();
+        console.log(quantity)
+      });
+  }
+}*/
+
+getQuantities(): Promise<number[]> {
+  return new Promise<number[]>((resolve, reject) => {
+    const quantities: number[] = [];
+    for (const product of this.produitcart) {
+      this.cartService.getquantity(this.idCart, product.produit)
+        .subscribe(quantity => {
+          product.quantity = quantity;
+          this.cdr.detectChanges();
+          console.log(quantity);
+          quantities.push(quantity);
+          if (quantities.length === this.produitcart.length) {
+            resolve(quantities);
+          }
+        }, error => {
+          reject(error);
+        });
+    }
+  });
+}
+
+
+
+
+  
+
   paniervide():boolean{
-    if(this.products !=null && this.quantity!=0)
+    if(this.products !=null && this.numProducts!=0)
     return false;
     return true;
+    }
+    addToCart(productId: number) {
+      this.cartService.addProductToCart(productId, 1).subscribe(() => {
+        console.log('Product added to cart.');
+        location.reload();
+      });
     }
 
   

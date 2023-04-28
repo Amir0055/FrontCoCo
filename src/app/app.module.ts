@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { BodyFrontComponentComponent } from './body-front-component/body-front-component.component';
 import { ProductComponent } from './product/product.component';
 import { CartComponent } from './cart/cart.component';
+import { DetailCommandeComponent } from './detail-commande/detail-commande.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CartComponent } from './cart/cart.component';
     BodyFrontComponentComponent,
     ProductComponent,
     CartComponent,
+    DetailCommandeComponent,
    
   ],
   imports: [

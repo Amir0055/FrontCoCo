@@ -1,6 +1,8 @@
 export class Product {
+
+   
 id!: number ;
-Reference!:String;
+reference!:String;
 nom!:String;
 img!:String;
 description!:String;
@@ -9,8 +11,10 @@ weight!:number ;
 EtatsProduit!:boolean;
 quantiteVendue!:number ;
 pourcentagePromotion!: number ;
-
+laquantity!: number;
 datePublication!:Date ;
-  quantity: any;
+
+
+  
 
 }

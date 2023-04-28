@@ -66,6 +66,9 @@ getCommandebyid(idCart:number ,idcommande: number) {
       }
     )
 }
+showdetails(id:Number){
+  this.R.navigate(['/user/detailcommande',id]);
+}
 getCommandebyidd(idcommande: number) {
   this.commandeService.getCommandeByIdd(idcommande)
     .subscribe(

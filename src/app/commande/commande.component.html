@@ -26,11 +26,13 @@
                 <td>{{u.totalWeight}}</td>
                 <td>{{u.tax}}</td>
                 <td>{{u.totalPrice}}</td>
+                <ul>
                 <td>
                     <button (click)="deleteCommande(u.id)">DELETE</button>
-                    <button (click)="getCommandebyid(idCart,u.id)">AFFICHER</button>
+                    <button (click)="showdetails(u.id)">AFFICHER</button>
                     <button (click)="effectuerPaiement(u.id,u.currency,token)">ACHETER</button>
                 </td>
+                </ul>
             </tr>
         </tbody>
     </table>

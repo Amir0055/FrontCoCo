@@ -1,0 +1,17 @@
+<div *ngIf="commande">
+    <h2>Commande n°{{ commande.id }}</h2>
+    <p>Date de commande : {{ commande.dateCmd }}</p>
+    <p>Magasin : {{ commande.shopName }}</p>
+    <p>Adresse du magasin : {{ commande.shopAddress }}</p>
+    <p>Email de l'acheteur : {{ commande.buyerEmail }}</p>
+    <p>Adresse de livraison : {{ commande.buyerAddress }}</p>
+    <p>Taxe : {{ commande.tax }}</p>
+    <p>Nombre de produits : {{ commande.nbProd }}</p>
+    <p>Prix total : {{ commande.totalPrice }} {{ commande.currency }}</p>
+    <p>Poids total : {{ commande.totalWeight }} kg</p>
+    <p>Description : {{ commande.description }}</p>
+    <p>État : {{ commande.etat }}</p>
+    <p>Mode de paiement : {{ commande.paymentMode }}</p>
+    <p>Méthode : {{ commande.methode }}</p>
+  </div>
+  

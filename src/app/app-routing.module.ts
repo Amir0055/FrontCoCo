@@ -8,6 +8,7 @@ import { CommandeComponent } from './commande/commande.component';
 import { BodyFrontComponentComponent } from './body-front-component/body-front-component.component';
 import { ProductComponent } from './product/product.component';
 import { CartComponent } from './cart/cart.component';
+import { DetailCommandeComponent } from './detail-commande/detail-commande.component';
 
 const routes: Routes = [
   {path:'admin',component:AllTemplatesAdminComponent,
@@ -23,7 +24,10 @@ const routes: Routes = [
   children:[{path:'product', component:ProductComponent},]},
 
   {path:'user',component:AllTemplateUserComponent,
-  children:[{path:'panier', component:CartComponent},]},];
+  children:[{path:'panier', component:CartComponent},]},
+
+  {path:'user',component:AllTemplateUserComponent,
+  children:[{path:'detailcommande/:id', component:DetailCommandeComponent},]},];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
