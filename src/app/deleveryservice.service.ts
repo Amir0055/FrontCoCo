@@ -22,4 +22,16 @@ public addLiv(region:string,Livraison:Livraison){
     return this.http.put("http://localhost:8088/commande/add-assign-liv/"+region,Livraison)
 
 }
+public updateliv(liv:Livraison){
+    return this.http.put<Livraison>("http://localhost:8088/Livraison/update-Livraison",liv)
+}
+public validate(id:number){
+
+    // @ts-ignore
+  return this.http.put("http://localhost:8088/Vehicule/validate-liv-car/"+id)
+}
+public listforuser(id:number):Observable<Livraison[]>{
+    return this.http.get<Livraison[]>("http://localhost:8088/Vehicule/getliv-byid/"+id)
+}
+
 }

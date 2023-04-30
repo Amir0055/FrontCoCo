@@ -12,6 +12,8 @@ import {CreatelivComponent} from "./createliv/createliv.component";
 import {CreatecarComponent} from "./createcar/createcar.component";
 import {AssaigncartouserComponent} from "./assaigncartouser/assaigncartouser.component";
 import {MapComponent} from "./map/map.component";
+import {UpLivComponent} from "./up-liv/up-liv.component";
+import {ListlivuserComponent} from "./listlivuser/listlivuser.component";
 
 const routes: Routes = [
   {path:'admin',
@@ -38,6 +40,9 @@ const routes: Routes = [
     },
     {
       path: 'assaignusercar',component: AssaigncartouserComponent
+    },
+    {
+      path: 'updateLiv/:id',component: UpLivComponent
     }
   ]
   },
@@ -56,6 +61,10 @@ const routes: Routes = [
     {
       path:'map',
       component:MapComponent
+    },
+    {
+      path:'listliv',
+      component:ListlivuserComponent
     }
   ]
   },

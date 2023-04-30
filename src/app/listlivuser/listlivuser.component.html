@@ -12,12 +12,11 @@
         <th>Weight</th>
         <th>Validation</th>
         <th>Etat de Livraison</th>
-        <th>Update</th>
-        <th>Delete</th>
+        <th>Validate</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let l of ListLiv">
+      <tr *ngFor="let l of listliv">
         <td>{{l.id}}</td>
         <td>{{l.date_Arrive}}</td>
         <td>{{l.date_Sortie}}</td>
@@ -26,12 +25,12 @@
         <td>{{l.weightL}}</td>
         <td>{{l.validation}}</td>
         <td>{{l.etat}}</td>
-        <td><button (click)="updateliv(l.id)" >Update</button></td>
-        <td><button (click)="deleteLiv(l.id)">Delete</button></td>
+        <td><button (click)="validate(1)" >Validate</button></td>
       </tr>
       </tbody>
     </table>
   </div>
 </div>
 <br>
-Create new Deliveries <a [routerLink]="['/admin/Createliv']"><i>Add new Delivery</i></a>
+
+

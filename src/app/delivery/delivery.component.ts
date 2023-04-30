@@ -19,4 +19,8 @@ deleteLiv(id:number){
     this.service.DeleteLiv(id).subscribe(()=>this.service.getLivs().subscribe(res=>this.ListLiv=res));
 
 }
+updateliv(id:number){
+  this.router.navigate(['/admin/updateLiv', id]);
+}
+
 }

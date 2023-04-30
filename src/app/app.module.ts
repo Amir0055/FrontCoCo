@@ -21,6 +21,8 @@ import { CreatelivComponent } from './createliv/createliv.component';
 import { CreatecarComponent } from './createcar/createcar.component';
 import { AssaigncartouserComponent } from './assaigncartouser/assaigncartouser.component';
 import { MapComponent } from './map/map.component';
+import { UpLivComponent } from './up-liv/up-liv.component';
+import { ListlivuserComponent } from './listlivuser/listlivuser.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { MapComponent } from './map/map.component';
     CreatelivComponent,
     CreatecarComponent,
     AssaigncartouserComponent,
-    MapComponent
+    MapComponent,
+    UpLivComponent,
+    ListlivuserComponent
   ],
   imports: [
     BrowserModule,
