@@ -2,10 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cart } from 'src/app/model/cart';
-import { Commande } from 'src/app/model/commande';
-import { Product } from 'src/app/model/product';
-import { CartService } from 'src/app/shared/cart.service';
-import { CommandeService } from 'src/app/shared/commande.service';
+import { CherifService } from 'src/app/shared/cherif.service';
+
 
 @Component({
   selector: 'app-header-user',
@@ -20,11 +18,11 @@ export class HeaderUserComponent implements OnInit {
 
   cart !:Cart ;
 
-  constructor(private R:Router,private cartService: CartService) { }
+  constructor(private R:Router,private messervices :CherifService) { }
 
   ngOnInit() {
     const cartId = 1; // ID du panier dont on veut connaître le nombre de produits
-    this.cartService.getNumProducts(cartId).subscribe(
+    this.messervices.getNumProducts(cartId).subscribe(
       numProducts => this.numProducts = numProducts,
       error => console.log(error)
     );

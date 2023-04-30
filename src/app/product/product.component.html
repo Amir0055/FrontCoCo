@@ -1,7 +1,7 @@
 <table>
   <thead>
     <tr>
-      <th>ID</th>
+      
       <th>Référence</th>
       <th>Nom</th>
       <th>Image</th>
@@ -17,10 +17,10 @@
   </thead>
   <tbody>
     <tr *ngFor="let product of product">
-      <td>{{product.id}}</td>
+      
       <td>{{product.reference}}</td>
       <td>{{product.nom}}</td>
-      <td><img [src]="product.img" alt="{{product.nom}}"></td>
+      <td><img [src]="product.img" alt="{{product.img}}"></td>
       <td>{{product.description}}</td>
       <td>{{product.prix}}</td>
       <td>{{product.weight}}</td>

@@ -1,12 +1,10 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { CartService } from '../shared/cart.service';
 import { Product } from '../model/product';
 import { HttpErrorResponse } from '@angular/common/http';
-import { CommandeService } from '../shared/commande.service';
 import { Commande } from '../model/commande';
 import { Router } from '@angular/router';
-import { ProductService } from '../shared/product.service';
 import { Produit_Cart } from '../model/produit-cart';
+import { CherifService } from '../shared/cherif.service';
 
 @Component({
   selector: 'app-cart',
@@ -38,10 +36,10 @@ export class CartComponent implements OnInit {
 
   
 
-  constructor(public cartService: CartService, private commandeService: CommandeService,private R:Router,private Prodservice :ProductService,private cdr: ChangeDetectorRef) { }
+  constructor(private R:Router,private messervices :CherifService,private cdr: ChangeDetectorRef) { }
 
   ngOnInit():void {
-    this.cartService.getProductsFromCart(this.idCart)
+    this.messervices.getProductsFromCart(this.idCart)
       .subscribe( (response: Product[]) => {
         this.products=response ;
 
@@ -52,31 +50,29 @@ export class CartComponent implements OnInit {
       )
 
       const cartId = 1; // ID du panier dont on veut connaître le nombre de produits
-      this.cartService.getNumProducts(cartId).subscribe(
+      this.messervices.getNumProducts(cartId).subscribe(
         numProducts => this.numProducts = numProducts,
         error => console.log(error)
       );
 
   
-      this.cartService.gettotalprice(cartId).subscribe(
+      this.messervices.gettotalprice(cartId).subscribe(
         totalprice => this.totalprice = totalprice,
         error => console.log(error)
       );
-
-    /*  for (const product of this.produitcart) {
-        this.cartService.getquantity(cartId, product.produit)
-          .subscribe(quantity => {
-            product.quantity = quantity;
-            this.cdr.detectChanges();
-            console.log(quantity)
-          });
-        }*/
-
         this.getQuantities().then(quantities => {
           console.log(quantities); // liste de quantités de produits
         }).catch(error => {
           console.error(error);
         });
+
+        for (const product of this.produitcart) {
+        this.messervices.removeProduitFromCart(this.idCart,product.produit).subscribe(() => {
+          console.log('Produit supprimé du panier avec succès');
+          
+        });}
+
+        
      
 
    
@@ -84,22 +80,11 @@ export class CartComponent implements OnInit {
 
   quantities: {[key: number]: number} = {};
 
-/*getQuantities(): void {
-  for (const product of this.produitcart) {
-    this.cartService.getquantity(this.idCart, product.produit)
-      .subscribe(quantity => {
-        product.quantity = quantity;
-        this.cdr.detectChanges();
-        console.log(quantity)
-      });
-  }
-}*/
-
 getQuantities(): Promise<number[]> {
   return new Promise<number[]>((resolve, reject) => {
     const quantities: number[] = [];
     for (const product of this.produitcart) {
-      this.cartService.getquantity(this.idCart, product.produit)
+      this.messervices.getquantity(this.idCart, product.produit)
         .subscribe(quantity => {
           product.quantity = quantity;
           this.cdr.detectChanges();
@@ -115,54 +100,59 @@ getQuantities(): Promise<number[]> {
   });
 }
 
-
-
-
-  
-
   paniervide():boolean{
     if(this.products !=null && this.numProducts!=0)
     return false;
     return true;
     }
+
+
     addToCart(productId: number) {
-      this.cartService.addProductToCart(productId, 1).subscribe(() => {
+      this.messervices.addProductToCart(productId, 1).subscribe(() => {
         console.log('Product added to cart.');
         location.reload();
       });
     }
 
-  
+    deletfromCart(productId:number){
+      this.messervices.deleteprodfromcart(productId,this.idCart)
+      .subscribe(
+        () => {
+          console.log(`le produit ${productId} supprimée avec succès`);
+          // Retirer la commande supprimée de la liste des commandes
+          this.products = this.products.filter(c => c.id !== productId);
+        },
+        (error: HttpErrorResponse) => {
+          console.log("erreur");
+        }
+        
+      )
+     
+      location.reload();
+    }
 
-  deletfromCart(productId:number){
-    this.cartService.deleteprodfromcart(productId,this.idCart)
-    .subscribe(
-      () => {
-        console.log(`le produit ${productId} supprimée avec succès`);
-        // Retirer la commande supprimée de la liste des commandes
-        this.products = this.products.filter(c => c.id !== productId);
-      },
-      (error: HttpErrorResponse) => {
-        console.log("erreur");
-      }
-    )
-    location.reload();
-  }
 
   ajoutercommande(commandes: Commande,idcart: number) {   
-    this.commandeService.confirmCommande(commandes, idcart)
+    this.messervices.confirmCommande(commandes, idcart)
       .subscribe(
         (response: Commande) => {
-          console.log(response);
           // Ajouter la commande créée à la liste des commandes
           this.listCommandes.push(response);
+
+          // Calculer la date limite d'annulation
+          const dateLimiteAnnulation = new Date(commandes.dateCmd);
+          dateLimiteAnnulation.setHours(dateLimiteAnnulation.getHours() + 5);
+
+          // Afficher l'alerte
+          alert("Vous pouvez annuler cette commande avant le " + dateLimiteAnnulation.toLocaleString());
+
         },
         (error: HttpErrorResponse) => {
           console.log("fama mochkla");
         }
-      )
-      location.reload();
+      );
 }
+
 
 showcommandes(){
   this.R.navigate(['/user/commande']);

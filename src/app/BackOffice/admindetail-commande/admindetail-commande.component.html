@@ -1,3 +1,13 @@
+
+<form (ngSubmit)="chercher(parametre.value)">
+  <div class="form-group">
+    <label for="parametre">Rechercher une commande :</label>
+    <input type="text" class="form-control" id="parametre" name="parametre" #parametre>
+  </div>
+  <button type="submit" class="btn btn-primary">Rechercher</button>
+</form>
+
+
 <div *ngIf="commande">
     <h2>Commande n°{{ commande.id }}</h2>
     <p>Date de commande : {{ commande.dateCmd }}</p>
@@ -11,7 +21,17 @@
     <p>Poids total : {{ commande.total_weight }} kg</p>
     <p>Products : {{ commande.les_produits }}</p>
     <p>État : <strong [ngStyle]="{'background-color': commande.etat === 'REFUSED'? 'red' :commande.etat === 'EDITABLE'? 'orange' : commande.etat === 'WAITING'? 'yellow' : commande.etat === 'VALIDATED' ? 'green' : ''}">{{ commande.etat }}</strong></p>
+
     <p>Mode de paiement : {{ commande.payment_mode }}</p>
     <p>Méthode : {{ commande.methode }}</p>
+    
+      <ul>
+      <button (click)="accepterCommande(commande.id) "  class="accepter">ACCEPTER</button>
+    <button (click)="refuserCommande(commande.id) "  class="refuser">REFUSER</button>
+  </ul>
+  <ul>
+    <button (click)="telechargerFacture(commande.id)">Télécharger Facture</button>
+  </ul>
+    
   </div>
   

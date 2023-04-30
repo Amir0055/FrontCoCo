@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../model/product';
 import { Router } from '@angular/router';
-import { ProductService } from '../shared/product.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { CartService } from '../shared/cart.service';
+import { CherifService } from '../shared/cherif.service';
 
 @Component({
   selector: 'app-product',
@@ -19,10 +18,10 @@ export class ProductComponent implements OnInit{
 
 
 
-  constructor(private R: Router, private productService: ProductService, private cartService: CartService){}
+  constructor(private R: Router, private messervices :CherifService){}
 
   ngOnInit() {
-    this.productService.getAllproducts()
+    this.messervices.getAllproducts()
       .subscribe(
         (response: Product[]) => {
           console.log(this.product)
@@ -37,7 +36,7 @@ export class ProductComponent implements OnInit{
 
   
   addToCart(productId: number) {
-    this.cartService.addProductToCart(productId, 1).subscribe(() => {
+    this.messervices.addProductToCart(productId, 1).subscribe(() => {
       console.log('Product added to cart.');
       location.reload();
     });

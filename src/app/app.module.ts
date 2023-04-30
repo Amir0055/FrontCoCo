@@ -12,13 +12,15 @@ import { BodyUserComponent } from './FrontOffice/body-user/body-user.component';
 import { FotterUserComponent } from './FrontOffice/fotter-user/fotter-user.component';
 import { HeaderUserComponent } from './FrontOffice/header-user/header-user.component';
 import { CommandeComponent } from './commande/commande.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { CommandeService } from './shared/commande.service';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BodyFrontComponentComponent } from './body-front-component/body-front-component.component';
 import { ProductComponent } from './product/product.component';
 import { CartComponent } from './cart/cart.component';
 import { DetailCommandeComponent } from './detail-commande/detail-commande.component';
+import { TraitementCommandeComponent } from './BackOffice/traitement-commande/traitement-commande.component';
+import { AdmindetailCommandeComponent } from './BackOffice/admindetail-commande/admindetail-commande.component';
+import { CherifService } from './shared/cherif.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { DetailCommandeComponent } from './detail-commande/detail-commande.compo
     ProductComponent,
     CartComponent,
     DetailCommandeComponent,
+    TraitementCommandeComponent,
+    AdmindetailCommandeComponent,
    
   ],
   imports: [
@@ -45,7 +49,7 @@ import { DetailCommandeComponent } from './detail-commande/detail-commande.compo
     HttpClientModule,
     FormsModule,
   ],
-  providers: [CommandeService],
+  providers: [CherifService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

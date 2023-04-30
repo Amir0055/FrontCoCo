@@ -1,23 +1,24 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Commande } from '../model/commande';
-import { HttpClient } from '@angular/common/http';
-
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import { CherifService } from '../shared/cherif.service';
+import { ActivatedRoute } from '@angular/router';
+import { Commande } from 'src/app/model/commande';
+import { CherifService } from 'src/app/shared/cherif.service';
 
 @Component({
-  selector: 'app-detail-commande',
-  templateUrl: './detail-commande.component.html',
-  styleUrls: ['./detail-commande.component.css']
+  selector: 'app-admindetail-commande',
+  templateUrl: './admindetail-commande.component.html',
+  styleUrls: ['./admindetail-commande.component.css']
 })
-export class DetailCommandeComponent implements OnInit{
-  
+export class AdmindetailCommandeComponent implements OnInit{
 
-  constructor(private messervices :CherifService, private ActR:ActivatedRoute,private http :HttpClient) {}
+  constructor(private messervices :CherifService,private ActR:ActivatedRoute,private http :HttpClient) {}
 
   idcommande!: number ;
   commande!: Commande;
   idCart:number =1 ;
+  commandes: any[] = [];
+
+  parametre: string = '';
 
   url="http://localhost:8088/Commande";
 
@@ -35,20 +36,31 @@ export class DetailCommandeComponent implements OnInit{
     
   }
 
-  accepterCommande() {
-    const commandeId = 1; // ID de la commande à accepter
+  accepterCommande(commandeId:number) {
+    
     const url = `${this.url}/${commandeId}/accepter`;
     this.http.put(url, {}).subscribe((response) => {
       console.log('La commande a été acceptée avec succès.');
     });
+    location.reload();
   }
 
-  refuserCommande() {
-    const commandeId = 2; // ID de la commande à refuser
+  refuserCommande(commandeId:number) {
     const url = `${this.url}/${commandeId}/refuser`;
     this.http.put(url, {}).subscribe((response) => {
       console.log('La commande a été refusée avec succès.');
     });
+    location.reload();
   }
-  
+
+  chercher(parametre: string): void {
+    this.messervices.rechercher(parametre)
+      .subscribe((response: Commande[]) => {
+        console.log(response);
+        this.commandes = response;},
+        (error: HttpErrorResponse) => {
+          console.log(error.message);
+        }
+      );
+    }
 }

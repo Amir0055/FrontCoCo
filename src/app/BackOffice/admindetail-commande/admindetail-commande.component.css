@@ -1,0 +1,15 @@
+.etat.en-attente {
+    font-weight: bold;
+    color: red;
+  }
+  
+
+  .accepter {
+    background-color: green;
+    color: white;
+  }
+  
+  .refuser {
+    background-color: red;
+    color: white;
+  }

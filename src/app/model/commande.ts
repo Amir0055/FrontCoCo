@@ -13,23 +13,28 @@ export enum PaymentMode {
   
 }
 
+
+
 export class Commande {
+
   id!: number;
   dateCmd!: Date;
-  shopName!: string;
-  shopAddress!: string;
-  buyerEmail!: string;
-  buyerAddress!: string;
+  shop_name!: string;
+  shop_address!: string;
+  buyer_email!: string;
+  buyer_Address!: string;
   tax!: number;
   nbProd!: number;
-  totalPrice!: number;
+  total_price!: number;
   currency!: string;
-  totalWeight!: number;
+  total_weight!: number;
   //lesProduits!: string[];
-  archive!: boolean;
-  description!: string;
+  //archive!: boolean;
+  les_produits!: string;
   etat!: Etat;
-  paymentMode!: PaymentMode;
+  payment_mode!: PaymentMode;
   methode!: string;
   commandeCart!: Cart;
+
+  
 }
