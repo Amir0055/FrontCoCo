@@ -9,9 +9,10 @@ import { UserService } from 'src/app/Services/user.service';
 })
 export class BodyUserComponent implements OnInit {
   UserConnecter!: string;
+
   constructor( private userService:UserService,
     private userAuthService:UserAuthService ){}
-
+    
 
   ngOnInit(): void {
     //get email from JWT

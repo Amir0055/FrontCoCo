@@ -12,11 +12,8 @@ import { UserAuthService } from '../Services/user-auth.service';
   styleUrls: ['./test-acces.component.css']
 })
 export class TestAccesComponent implements OnInit {
-  authRequest:any={   
-    "email":"amirzaafouri1@gmail.com",
-    "password":"123"
-    };
-
+  msgError!:any;
+ 
   
     response:any;
   constructor(   private userService: UserService, 
@@ -27,11 +24,12 @@ export class TestAccesComponent implements OnInit {
 
     // this.getAccessToken(this.authRequest);
    }
-
+   
    login(loginForm: NgForm) {
     this.userService.login(loginForm.value).subscribe(
       (response: any) => {
         console.log(response);
+        if(response.jwtToken !=null){
       this.userAuthService.setAutoritys(response.user.autority);
       this.userAuthService.setToken(response.jwtToken);
       const role = response.user.autority[0].name;//return object min array  
@@ -44,6 +42,10 @@ export class TestAccesComponent implements OnInit {
           console.log("I'm ADMIN");
           this.router.navigate(['/admin/home'])
         }
+      }else{
+        this.msgError=response.msg;
+        console.log( this.msgError);
+      }
     },
       (error) => {
         console.log(error);
