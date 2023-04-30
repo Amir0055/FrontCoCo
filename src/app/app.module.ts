@@ -16,7 +16,16 @@ import { ForbiddenComponent } from './FrontOffice/forbidden/forbidden.component'
 import { TestAccesComponent } from './test-acces/test-acces.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { UserService } from './Services/user.service';
+import { AuthInterceptor } from './_Auth/auth.interceptor.spec';
+import { AuthGuard } from './_Auth/auth.guard';
+import { RegisterComponent } from './FrontOffice/register/register.component';
+import { ResetPasswordComponent } from './FrontOffice/reset-password/reset-password.component';
+import { ResetPasswordDirectComponent } from './FrontOffice/reset-password-direct/reset-password-direct.component';
+import { AssociatioInfoComponent } from './BackOffice/associatio-info/associatio-info.component';
+import { GestionProfileComponent } from './BackOffice/gestion-profile/gestion-profile.component';
+import { UpdateProfileComponent } from './BackOffice/update-profile/update-profile.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +41,13 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderUserComponent,
     TestAccesComponent,
     ForbiddenComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    RegisterComponent,
+    ResetPasswordComponent,
+    ResetPasswordDirectComponent,
+    AssociatioInfoComponent,
+    GestionProfileComponent,
+    UpdateProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -40,9 +55,16 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     FormsModule, 
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    
+ 
   ],
-  providers: [],
+  providers: [ AuthGuard,{
+    provide:HTTP_INTERCEPTORS,
+    useClass:AuthInterceptor,
+    multi:true
+  },
+  UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

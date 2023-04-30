@@ -3,11 +3,13 @@ import { UserAuthService } from 'src/app/Services/user-auth.service';
 import { UserService } from 'src/app/Services/user.service';
 
 @Component({
-  selector: 'app-header-admin',
-  templateUrl: './header-admin.component.html',
-  styleUrls: ['./header-admin.component.css']
+  selector: 'app-gestion-profile',
+  templateUrl: './gestion-profile.component.html',
+  styleUrls: ['./gestion-profile.component.css']
 })
-export class HeaderAdminComponent implements OnInit {
+export class GestionProfileComponent implements OnInit {
+
+
   UserConnecter!:string;
   user!:any;
   constructor( private userService:UserService,
@@ -23,5 +25,4 @@ export class HeaderAdminComponent implements OnInit {
           console.log(data);
         });
   }
-
 }
