@@ -91,10 +91,15 @@ export class CherifService {
       return this.http.delete(url);
     }
   
-  confirmCommande(commande: Commande, idCart: number): Observable<Commande> {
-    const url = `${this.url}/Confirm-Commande/${idCart}`;
-    return this.http.post<Commande>(url, commande);
-  }
+    confirmCommande(commande: Commande, idCart: number, coupon: string): Observable<Commande> {
+      let url = `${this.url}/Confirm-Commande/${idCart}`;
+      if (coupon) {
+        url += `?coupon=${encodeURIComponent(coupon)}`;
+        console.log(coupon);
+      }
+      return this.http.post<Commande>(url, commande);
+    }
+    
 
   effectuerPaiement(commandeId: number, devise: string, token: string): Observable<any> {
     const body = { commandeId, devise, token };

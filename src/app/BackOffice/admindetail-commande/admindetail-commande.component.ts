@@ -62,5 +62,6 @@ export class AdmindetailCommandeComponent implements OnInit{
           console.log(error.message);
         }
       );
+      location.reload();
     }
 }

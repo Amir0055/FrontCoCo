@@ -76,9 +76,20 @@
   <div class="row justify-content-end">
       <div class="col-lg-5">
           <div class="cart-collaterals mt-5">
+            
               <div class="cart_totals ">
                   <h2>Cart totals</h2>
+                  <form  (ngSubmit)="ajoutercommande(commande,idCart,coupon)" class="checkout_coupon woocommerce-form-coupon" method="post">
+
+                    <p>If you have a coupon code, please apply it below.</p>
+
+                    <p class="form-row form-row-first">
+                        <input type="text" [(ngModel)]="coupon" name="coupon" class="input-text" placeholder="Coupon code" id="coupon" >
+                    </p>
+                    <div class="clear"></div>
+                </form>
                   <table class="shop_table shop_table_responsive" cellspacing="0">
+                    
                       <tbody><tr class="cart-subtotal">
                           <th>Nombre de Produits</th>
                           <td data-title="Subtotal"><strong><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol"></span>{{numProducts}}</span></strong></td>
@@ -90,21 +101,24 @@
                       </tbody>
                   </table>
                   <div class="wc-proceed-to-checkout">
-                      <a (click)="ajoutercommande(commande,idCart)" class="checkout-button button alt wc-forward">
-                        Passer la commande 
+                      <a (click)="ajoutercommande(commande,idCart,coupon)" class="checkout-button button alt wc-forward">
+                        Place Order
                       </a>
                   </div>
+              
                   <div class="wc-proceed-to-checkout">
                     <a (click)="showcommandes()" class="checkout-button button alt wc-forward">
-                      Voir mes commandes 
+                      Check Orders 
                     </a>
                     <a (click)="commencerachat()" class="checkout-button button alt wc-forward" style="display: block; margin-top: 10px;">
                       Continuer vos achats
                   </a>
                 </div>
+                
               </div>
           </div>
       </div>
+      
   </div>
 </div>
 

@@ -31,6 +31,8 @@ export class CartComponent implements OnInit {
   numProducts!: number;
   totalprice!:number ;
 
+  coupon!:string;
+
   //quantiti?:number ;
 
 
@@ -72,10 +74,6 @@ export class CartComponent implements OnInit {
           
         });}
 
-        
-     
-
-   
   }
 
   quantities: {[key: number]: number} = {};
@@ -88,7 +86,6 @@ getQuantities(): Promise<number[]> {
         .subscribe(quantity => {
           product.quantity = quantity;
           this.cdr.detectChanges();
-          console.log(quantity);
           quantities.push(quantity);
           if (quantities.length === this.produitcart.length) {
             resolve(quantities);
@@ -132,8 +129,8 @@ getQuantities(): Promise<number[]> {
     }
 
 
-  ajoutercommande(commandes: Commande,idcart: number) {   
-    this.messervices.confirmCommande(commandes, idcart)
+  ajoutercommande(commandes: Commande,idcart: number,coupon:string) {   
+    this.messervices.confirmCommande(commandes, idcart,coupon)
       .subscribe(
         (response: Commande) => {
           // Ajouter la commande créée à la liste des commandes

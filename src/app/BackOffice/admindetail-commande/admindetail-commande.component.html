@@ -1,20 +1,22 @@
-
-<form (ngSubmit)="chercher(parametre.value)">
-  <div class="form-group">
-    <label for="parametre">Rechercher une commande :</label>
+<form class="form-inline" (ngSubmit)="chercher(parametre.value)">
+  <div class="form-group mr-3">
+    <label for="parametre" class="mr-2">Rechercher une commande :</label>
     <input type="text" class="form-control" id="parametre" name="parametre" #parametre>
   </div>
   <button type="submit" class="btn btn-primary">Rechercher</button>
 </form>
 
 
-<div *ngIf="commande">
-    <h2>Commande n°{{ commande.id }}</h2>
+<div *ngIf="commande" class="card">
+  <div class="card-header">
+    Commande n°{{ commande.id }}
+  </div>
+  <div class="card-body">
     <p>Date de commande : {{ commande.dateCmd }}</p>
-    <p>shop Name : {{ commande.shop_name }}</p>
-    <p>shop Address: {{ commande.shop_address }}</p>
-    <p>buyer Email: {{ commande.buyer_email }}</p>
-    <p>buyer Address : {{ commande.buyer_Address }}</p>
+    <p>Shop Name : {{ commande.shop_name }}</p>
+    <p>Shop Address: {{ commande.shop_address }}</p>
+    <p>Buyer Email: {{ commande.buyer_email }}</p>
+    <p>Buyer Address : {{ commande.buyer_Address }}</p>
     <p>Tax : {{ commande.tax }}</p>
     <p>Nombre de produits : {{ commande.nbProd }}</p>
     <p>Prix total : {{ commande.total_price }} DT</p>
@@ -24,14 +26,13 @@
 
     <p>Mode de paiement : {{ commande.payment_mode }}</p>
     <p>Méthode : {{ commande.methode }}</p>
-    
-      <ul>
-      <button (click)="accepterCommande(commande.id) "  class="accepter">ACCEPTER</button>
-    <button (click)="refuserCommande(commande.id) "  class="refuser">REFUSER</button>
-  </ul>
-  <ul>
-    <button (click)="telechargerFacture(commande.id)">Télécharger Facture</button>
-  </ul>
-    
+
+    <ul class="list-inline">
+      <li class="list-inline-item"><button (click)="accepterCommande(commande.id)" class="btn btn-success">ACCEPTER</button></li>
+      <li class="list-inline-item"><button (click)="refuserCommande(commande.id)" class="btn btn-danger">REFUSER</button></li>
+    </ul>
+    <ul class="list-inline">
+      <li class="list-inline-item"><button (click)="telechargerFacture(commande.id)" class="btn btn-primary">Télécharger Facture</button></li>
+    </ul>
   </div>
-  
+</div>

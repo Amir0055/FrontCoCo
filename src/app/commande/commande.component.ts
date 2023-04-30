@@ -25,6 +25,8 @@ export class CommandeComponent implements OnInit {
 
   pdfUrl!: string;
 
+  coupon:string='';
+
   
 constructor(private messervices :CherifService,private R: Router,private http :HttpClient) {}
 
@@ -88,13 +90,25 @@ getCommandebyidd(idcommande: number) {
       }
     )
 }
-onSubmit() {
-  const idCart = 1;
-    this.messervices.confirmCommande(this.commande,idCart).subscribe(
-      data => alert("commande ajoutée avec succés"),
-      error => console.error("erreur")
+onSubmit(commandes: Commande,idcart: number) {   
+  this.messervices.confirmCommande(commandes, idcart,this.coupon)
+    .subscribe(
+      (response: Commande) => {
+        // Ajouter la commande créée à la liste des commandes
+        this.listCommandes.push(response);
+
+        // Calculer la date limite d'annulation
+        const dateLimiteAnnulation = new Date(commandes.dateCmd);
+        dateLimiteAnnulation.setHours(dateLimiteAnnulation.getHours() + 5);
+
+        // Afficher l'alerte
+        alert("Vous pouvez annuler cette commande avant le " + dateLimiteAnnulation.toLocaleString());
+
+      },
+      (error: HttpErrorResponse) => {
+        console.log("fama mochkla");
+      }
     );
-    location.reload();
 }
 
 
