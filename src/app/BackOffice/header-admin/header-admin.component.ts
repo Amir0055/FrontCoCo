@@ -23,5 +23,10 @@ export class HeaderAdminComponent implements OnInit {
           console.log(data);
         });
   }
+    
+  public logout() {
+    this.userAuthService.clear();
+   // this.router.navigate(['/home']);
+  }
 
 }
