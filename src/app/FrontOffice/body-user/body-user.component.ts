@@ -1,12 +1,15 @@
+
 import { Component, OnInit } from '@angular/core';
 import { UserAuthService } from 'src/app/Services/user-auth.service';
 import { UserService } from 'src/app/Services/user.service';
+
 
 @Component({
   selector: 'app-body-user',
   templateUrl: './body-user.component.html',
   styleUrls: ['./body-user.component.css']
 })
+
 export class BodyUserComponent implements OnInit {
   UserConnecter!: string;
 
@@ -23,4 +26,5 @@ export class BodyUserComponent implements OnInit {
       console.log(data);
     });
   }
+
 }

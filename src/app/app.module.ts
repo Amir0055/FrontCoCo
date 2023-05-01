@@ -11,6 +11,20 @@ import { AllTemplateUserComponent } from './FrontOffice/all-template-user/all-te
 import { BodyUserComponent } from './FrontOffice/body-user/body-user.component';
 import { FotterUserComponent } from './FrontOffice/fotter-user/fotter-user.component';
 import { HeaderUserComponent } from './FrontOffice/header-user/header-user.component';
+
+import { VehiculeComponentComponent } from './vehicule-component/vehicule-component.component';
+
+
+import { AddCarComponent } from './add-car/add-car.component';
+import { UpdatecarComponent } from './updatecar/updatecar.component';
+import { DeliveryComponent } from './delivery/delivery.component';
+import { CreatelivComponent } from './createliv/createliv.component';
+import { CreatecarComponent } from './createcar/createcar.component';
+import { AssaigncartouserComponent } from './assaigncartouser/assaigncartouser.component';
+import { MapComponent } from './map/map.component';
+import { UpLivComponent } from './up-liv/up-liv.component';
+import { ListlivuserComponent } from './listlivuser/listlivuser.component';
+
 import { PageNotFoundComponent } from './FrontOffice/page-not-found/page-not-found.component';
 import { ForbiddenComponent } from './FrontOffice/forbidden/forbidden.component';
 import { TestAccesComponent } from './test-acces/test-acces.component';
@@ -33,6 +47,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { ChartsComponent } from './BackOffice/charts/charts.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +60,18 @@ import { ChartsComponent } from './BackOffice/charts/charts.component';
     BodyUserComponent,
     FotterUserComponent,
     HeaderUserComponent,
+
+    VehiculeComponentComponent,
+    AddCarComponent,
+    UpdatecarComponent,
+    DeliveryComponent,
+    CreatelivComponent,
+    CreatecarComponent,
+    AssaigncartouserComponent,
+    MapComponent,
+    UpLivComponent,
+    ListlivuserComponent
+
     TestAccesComponent,
     ForbiddenComponent,
     PageNotFoundComponent,
@@ -58,6 +85,7 @@ import { ChartsComponent } from './BackOffice/charts/charts.component';
     MoreInfoUserComponent,
     MailboxesComponentComponent,
     ChartsComponent
+
   ],
   imports: [
     BrowserModule,
@@ -76,6 +104,7 @@ import { ChartsComponent } from './BackOffice/charts/charts.component';
     multi:true
   },
   UserService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
