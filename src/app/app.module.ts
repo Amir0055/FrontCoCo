@@ -26,6 +26,12 @@ import { ResetPasswordDirectComponent } from './FrontOffice/reset-password-direc
 import { AssociatioInfoComponent } from './BackOffice/associatio-info/associatio-info.component';
 import { GestionProfileComponent } from './BackOffice/gestion-profile/gestion-profile.component';
 import { UpdateProfileComponent } from './BackOffice/update-profile/update-profile.component';
+import { ListUserComponent } from './BackOffice/list-user/list-user.component';
+import { MoreInfoUserComponent } from './BackOffice/more-info-user/more-info-user.component';
+import { MailboxesComponentComponent } from './BackOffice/mailboxes-component/mailboxes-component.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { ChartsComponent } from './BackOffice/charts/charts.component';
+
 
 @NgModule({
   declarations: [
@@ -47,7 +53,11 @@ import { UpdateProfileComponent } from './BackOffice/update-profile/update-profi
     ResetPasswordDirectComponent,
     AssociatioInfoComponent,
     GestionProfileComponent,
-    UpdateProfileComponent
+    UpdateProfileComponent,
+    ListUserComponent,
+    MoreInfoUserComponent,
+    MailboxesComponentComponent,
+    ChartsComponent
   ],
   imports: [
     BrowserModule,
@@ -56,10 +66,11 @@ import { UpdateProfileComponent } from './BackOffice/update-profile/update-profi
     FormsModule, 
     ReactiveFormsModule,
     RouterModule,
-    
+    OAuthModule.forRoot(),
+
  
   ],
-  providers: [ AuthGuard,{
+    providers: [ AuthGuard,{
     provide:HTTP_INTERCEPTORS,
     useClass:AuthInterceptor,
     multi:true

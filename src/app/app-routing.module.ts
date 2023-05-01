@@ -14,6 +14,10 @@ import { ResetPasswordDirectComponent } from './FrontOffice/reset-password-direc
 import { AssociatioInfoComponent } from './BackOffice/associatio-info/associatio-info.component';
 import { GestionProfileComponent } from './BackOffice/gestion-profile/gestion-profile.component';
 import { UpdateProfileComponent } from './BackOffice/update-profile/update-profile.component';
+import { ListUserComponent } from './BackOffice/list-user/list-user.component';
+import { MailboxesComponentComponent } from './BackOffice/mailboxes-component/mailboxes-component.component';
+import { ChartsComponent } from './BackOffice/charts/charts.component';
+import { MoreInfoUserComponent } from './BackOffice/more-info-user/more-info-user.component';
 
 const routes: Routes = [
   
@@ -25,6 +29,11 @@ const routes: Routes = [
       component:BodyAdminComponent,canActivate:[AuthGuard],data:{autority:['ADMIN']}
     },
     {
+      path:'listuser',
+      component:ListUserComponent,canActivate:[AuthGuard],data:{autority:['ADMIN']}
+    },
+    { path: 'Detailsusers/:id', component: MoreInfoUserComponent,canActivate:[AuthGuard],data:{autority:['ADMIN']} }
+    ,{
       path:'AssociationInfo',
       component:AssociatioInfoComponent,
     },
@@ -36,6 +45,11 @@ const routes: Routes = [
       path:'UpdateProfile',
       component:UpdateProfileComponent,
     },
+    {
+      path:'Mail',
+      component:MailboxesComponentComponent,
+    },
+
   ]
   }, 
   {path:'user',
@@ -53,6 +67,9 @@ const routes: Routes = [
     component:ResetPasswordComponent},
     {path:'ResetPasswordDirect',
     component:ResetPasswordDirectComponent},
+    {path:'Chart',
+    component:ChartsComponent},
+ 
   ]
   },
   {path:'forbidden',

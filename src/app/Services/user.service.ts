@@ -1,9 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserAuthService } from './user-auth.service';
 import { User } from '../model/User';
 import { Observable } from 'rxjs';
-
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -50,14 +50,30 @@ export class UserService {
   public getConnectedUser(mail :string){
     return this.httpclient.get<any>(this.PATH_OF_API +"api/v1/auth/GetbyMail/"+mail);
   }
-
+  public DisableUnDisabe(id :number){     
+    return this.httpclient.put<any>(this.PATH_OF_API +"api/v1/auth/DisableUnDisabe/"+id,{
+      responseType: 'text',
+    });
+  }
+  public getdUserById(Id :number){
+    return this.httpclient.get<any>(this.PATH_OF_API +"api/v1/auth/GetthisUser/"+Id);
+  }
   public forUser() {
     return this.httpclient.get(this.PATH_OF_API + 'api/v1/demo-controller/profile', {
       responseType: 'text',
     });
   }
-
-
+  public getUsers(){
+    return this.httpclient.get<any[]>("http://localhost:8088/api/v1/auth/GetAllUser");
+  }
+  public getListUserWithRole(role:string){
+    return this.httpclient.get<any[]>(this.PATH_OF_API +"api/v1/auth/GetNbrUserByRole/"+role);
+  }
+  getLengthByRole(role:string) {
+    return this.httpclient.get<any[]>(this.PATH_OF_API +"api/v1/auth/GetNbrUserByRole/"+role).pipe(
+      map((users: any[]) => users.length)
+    );
+  }
   public forAdmin() {
     return this.httpclient.get(this.PATH_OF_API + 'api/v1/demo-controller/Dashboard', {
       responseType: 'text',
@@ -65,7 +81,7 @@ export class UserService {
   }
  public SendCodeMail(mail :string){
   return this.httpclient.get<any>(this.PATH_OF_API +"api/v1/auth/SendMailForgetPswd/"+mail);
-}
+  }
 public VerifCodeMail(code :string):Observable<boolean>{ 
   return this.httpclient.get<boolean>(this.PATH_OF_API +"api/v1/auth/VerifierCode/"+code);
 }

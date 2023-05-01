@@ -12,11 +12,12 @@ import { DataBindingService } from 'src/app/TransferData/data-binding.service';
 export class ResetPasswordDirectComponent implements OnInit{
   receivedValue: any;
   test : any;
-
+  Correct:boolean=false;
   constructor(private authService: UserService,private router: Router,private data: DataBindingService) {
     this.receivedValue = this.data.sharedValue;
   }
   ngOnInit(): void {
+    this.VerfierCode();
     throw new Error('receivedValue :'+this.receivedValue);
   }
     public VerfierCode() : any {
@@ -25,6 +26,7 @@ export class ResetPasswordDirectComponent implements OnInit{
         let resp= this.authService.VerifCodeMail(this.test);
         resp.subscribe((data)=>{
           console.log("Resulta Of verifCode:"+data)
+          this.Correct=data;
           return data;
         });
       }, 40000);
