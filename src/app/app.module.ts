@@ -11,6 +11,22 @@ import { AllTemplateUserComponent } from './FrontOffice/all-template-user/all-te
 import { BodyUserComponent } from './FrontOffice/body-user/body-user.component';
 import { FotterUserComponent } from './FrontOffice/fotter-user/fotter-user.component';
 import { HeaderUserComponent } from './FrontOffice/header-user/header-user.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ShopComponent } from './shop/shop.component';
+import { FormsModule } from '@angular/forms';
+import { AllProduitComponent } from './all-produit/all-produit.component';
+import { AllshopComponent } from './allshop/allshop.component';
+import { DetailsComponent } from './details/details.component';
+import { NgxRatingModule } from 'ngx-rating';
+import { NgxStarRatingModule } from 'ngx-star-rating';
+import { ProductComponent } from './product/product.component';
+
+
+
+
+
+
+
 
 import { VehiculeComponentComponent } from './vehicule-component/vehicule-component.component';
 
@@ -60,6 +76,15 @@ import { ChartsComponent } from './BackOffice/charts/charts.component';
     BodyUserComponent,
     FotterUserComponent,
     HeaderUserComponent,
+ snoussi
+    ShopComponent,
+    AllProduitComponent,
+    AllshopComponent,
+    DetailsComponent,
+    ProductComponent,
+    
+  
+
 
     VehiculeComponentComponent,
     AddCarComponent,
@@ -86,17 +111,25 @@ import { ChartsComponent } from './BackOffice/charts/charts.component';
     MailboxesComponentComponent,
     ChartsComponent
 
+ main
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule, 
+ snoussi
+    NgxStarRatingModule,
+
+
+
+
     ReactiveFormsModule,
     RouterModule,
     OAuthModule.forRoot(),
 
  
+ main
   ],
     providers: [ AuthGuard,{
     provide:HTTP_INTERCEPTORS,

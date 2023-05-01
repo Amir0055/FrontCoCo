@@ -22,6 +22,10 @@
     "@types/leaflet": "^1.9.3",
     "@types/mapbox-gl-leaflet": "^0.0.1",
     "bootstrap": "^5.2.3",
+ snoussi
+    "ngx-rating": "^0.0.9",
+    "ngx-star-rating": "^2.1.0",
+
     "leaflet": "^1.9.3",
     "leaflet.markercluster": "^1.5.3",
     "mapbox-gl": "^2.14.1",
@@ -34,6 +38,7 @@
     "highcharts": "^11.0.0",
     "jwt-decode": "^3.1.2",
 
+main
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

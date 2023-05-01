@@ -4,6 +4,10 @@ import { BodyAdminComponent } from './BackOffice/body-admin/body-admin.component
 import { AllTemplatesAdminComponent } from './BackOffice/all-templates-admin/all-templates-admin.component';
 import { AllTemplateUserComponent } from './FrontOffice/all-template-user/all-template-user.component';
 import { BodyUserComponent } from './FrontOffice/body-user/body-user.component';
+import { ShopComponent } from './shop/shop.component';
+import { AllProduitComponent } from './all-produit/all-produit.component';
+import { AllshopComponent } from './allshop/allshop.component';
+import { DetailsComponent } from './details/details.component';
 
 import {VehiculeComponentComponent} from "./vehicule-component/vehicule-component.component";
 import {AddCarComponent} from "./add-car/add-car.component";
@@ -33,6 +37,33 @@ import { ChartsComponent } from './BackOffice/charts/charts.component';
 import { MoreInfoUserComponent } from './BackOffice/more-info-user/more-info-user.component';
 
 const routes: Routes = [
+ snoussi
+  {
+    path: 'admin',
+    component: AllTemplatesAdminComponent,
+    children: [
+      {
+        path: 'home',
+        component: BodyAdminComponent,
+      },
+    ],
+  },
+
+  {
+    path: 'user',
+    component: AllTemplateUserComponent,
+    children: [
+      {
+        path: 'home',
+        component: BodyUserComponent,
+      },
+      { path: 'addShop', component: ShopComponent },
+
+      { path: 'allproduit', component: AllProduitComponent },
+      { path: 'allshop', component: AllshopComponent },
+    ],
+  },
+  {path : 'details/:id', component : DetailsComponent} 
   
   {path:'admin',
    component:AllTemplatesAdminComponent,
@@ -128,10 +159,11 @@ const routes: Routes = [
   {path:'NotFound',
   component:PageNotFoundComponent},
 
+ main
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
