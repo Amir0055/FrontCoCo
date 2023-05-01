@@ -10,7 +10,7 @@
                         quam ipsa blanditiis, facilis velit eaque illo?</p>
 
                     <div class="btn-container">
-                        <a href="#" class="btn btn-main rounded">Find Courses</a>
+                        <a href="#" class="btn btn-main rounded" [routerLink]="['/user/addShop' ]">ADD YOUR SHOP </a>
                         <a href="#" class="btn btn-white rounded ms-2">Get started </a>
                     </div>
                 </div>
@@ -40,6 +40,9 @@
                             <p>Students</p>
                         </div>
                     </div>
+
+
+
 
                     <div class="col-lg-3 col-md-6">
                         <div class="counter-item mb-5 mb-lg-0">
@@ -238,6 +241,7 @@
 
 <!--  Course category -->
 <section class="course-category-3 section-padding">
+
     <div class="container">
         <div class="row mb-70 justify-content-center">
             <div class="col-xl-8">
@@ -247,74 +251,45 @@
                 </div>
             </div>
         </div>
+        
 
         <div class="row">
-            <div class="col-xl col-lg-4 col-sm-6">
+           
+   
+            <div class="col-xl col-lg-4 col-sm-6" *ngFor="let shop of shops"> 
                 <div class="single-course-category style-3 bg-1">
                     <div class="course-cat-icon">
                         <img src="assets/images/icon/icon1.png" alt="" class="img-fluid">
                     </div>
                     <div class="course-cat-content">
                         <h4 class="course-cat-title">
-                            <a href="#">Data Science & Analytics</a>
+                            <a href="#">{{shop.nom}} {{shop.id}} </a>
                         </h4>
                     </div>
                 </div>
+              
             </div>
-
-            <div class="col-xl col-lg-4 col-sm-6">
+            <!--<div class="col-xl col-lg-4 col-sm-6 ">
                 <div class="single-course-category style-3 bg-2">
                     <div class="course-cat-icon">
                         <img src="assets/images/icon/icon2.png" alt="" class="img-fluid">
                     </div>
                     <div class="course-cat-content">
                         <h4 class="course-cat-title">
-                            <a href="#">Artificial Intellegence</a>
+                            <a href="#">{{shop.nom}} {{shop.id}}</a>
                         </h4>
                     </div>
                 </div>
             </div>
-
-            <div class="col-xl col-lg-4 col-sm-6">
-                <div class="single-course-category style-3 bg-3">
-                    <div class="course-cat-icon">
-                        <img src="assets/images/icon/icon3.png" alt="" class="img-fluid">
-                    </div>
-                    <div class="course-cat-content">
-                        <h4 class="course-cat-title">
-                            <a href="#">Algebra Math calculation</a>
-                        </h4>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl col-lg-4 col-sm-6">
-                <div class="single-course-category style-3 bg-4">
-                    <div class="course-cat-icon">
-                        <img src="assets/images/icon/icon4.png" alt="" class="img-fluid">
-                    </div>
-                    <div class="course-cat-content">
-                        <h4 class="course-cat-title">
-                            <a href="#">Web Development</a>
-                        </h4>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl col-lg-4 col-sm-6">
-                <div class="single-course-category style-3 bg-5">
-                    <div class="course-cat-icon">
-                        <img src="assets/images/icon/icon6.png" alt="" class="img-fluid">
-                    </div>
-                    <div class="course-cat-content">
-                        <h4 class="course-cat-title">
-                            <a href="#">Digital Marketing & SEO</a>
-                        </h4>
-                    </div>
-                </div>
-            </div>
+         -->
+        
         </div>
-    </div>
+      
+        </div>
+     
+
+
+
 </section>
 <!--  Course category End -->
 <!-- Work Process Section Start -->

@@ -11,6 +11,22 @@ import { AllTemplateUserComponent } from './FrontOffice/all-template-user/all-te
 import { BodyUserComponent } from './FrontOffice/body-user/body-user.component';
 import { FotterUserComponent } from './FrontOffice/fotter-user/fotter-user.component';
 import { HeaderUserComponent } from './FrontOffice/header-user/header-user.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ShopComponent } from './shop/shop.component';
+import { FormsModule } from '@angular/forms';
+import { AllProduitComponent } from './all-produit/all-produit.component';
+import { AllshopComponent } from './allshop/allshop.component';
+import { DetailsComponent } from './details/details.component';
+import { NgxRatingModule } from 'ngx-rating';
+import { NgxStarRatingModule } from 'ngx-star-rating';
+import { ProductComponent } from './product/product.component';
+
+
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -23,11 +39,24 @@ import { HeaderUserComponent } from './FrontOffice/header-user/header-user.compo
     AllTemplateUserComponent,
     BodyUserComponent,
     FotterUserComponent,
-    HeaderUserComponent
+    HeaderUserComponent,
+    ShopComponent,
+    AllProduitComponent,
+    AllshopComponent,
+    DetailsComponent,
+    ProductComponent,
+    
+  
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule, 
+    NgxStarRatingModule,
+
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
