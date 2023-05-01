@@ -11,9 +11,10 @@ import { AllTemplateUserComponent } from './FrontOffice/all-template-user/all-te
 import { BodyUserComponent } from './FrontOffice/body-user/body-user.component';
 import { FotterUserComponent } from './FrontOffice/fotter-user/fotter-user.component';
 import { HeaderUserComponent } from './FrontOffice/header-user/header-user.component';
+
 import { VehiculeComponentComponent } from './vehicule-component/vehicule-component.component';
-import {HttpClientModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
+
+
 import { AddCarComponent } from './add-car/add-car.component';
 import { UpdatecarComponent } from './updatecar/updatecar.component';
 import { DeliveryComponent } from './delivery/delivery.component';
@@ -23,6 +24,29 @@ import { AssaigncartouserComponent } from './assaigncartouser/assaigncartouser.c
 import { MapComponent } from './map/map.component';
 import { UpLivComponent } from './up-liv/up-liv.component';
 import { ListlivuserComponent } from './listlivuser/listlivuser.component';
+
+import { PageNotFoundComponent } from './FrontOffice/page-not-found/page-not-found.component';
+import { ForbiddenComponent } from './FrontOffice/forbidden/forbidden.component';
+import { TestAccesComponent } from './test-acces/test-acces.component';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { UserService } from './Services/user.service';
+import { AuthInterceptor } from './_Auth/auth.interceptor.spec';
+import { AuthGuard } from './_Auth/auth.guard';
+import { RegisterComponent } from './FrontOffice/register/register.component';
+import { ResetPasswordComponent } from './FrontOffice/reset-password/reset-password.component';
+import { ResetPasswordDirectComponent } from './FrontOffice/reset-password-direct/reset-password-direct.component';
+import { AssociatioInfoComponent } from './BackOffice/associatio-info/associatio-info.component';
+import { GestionProfileComponent } from './BackOffice/gestion-profile/gestion-profile.component';
+import { UpdateProfileComponent } from './BackOffice/update-profile/update-profile.component';
+import { ListUserComponent } from './BackOffice/list-user/list-user.component';
+import { MoreInfoUserComponent } from './BackOffice/more-info-user/more-info-user.component';
+import { MailboxesComponentComponent } from './BackOffice/mailboxes-component/mailboxes-component.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { ChartsComponent } from './BackOffice/charts/charts.component';
+
+
 
 @NgModule({
   declarations: [
@@ -36,6 +60,7 @@ import { ListlivuserComponent } from './listlivuser/listlivuser.component';
     BodyUserComponent,
     FotterUserComponent,
     HeaderUserComponent,
+
     VehiculeComponentComponent,
     AddCarComponent,
     UpdatecarComponent,
@@ -46,14 +71,40 @@ import { ListlivuserComponent } from './listlivuser/listlivuser.component';
     MapComponent,
     UpLivComponent,
     ListlivuserComponent
+
+    TestAccesComponent,
+    ForbiddenComponent,
+    PageNotFoundComponent,
+    RegisterComponent,
+    ResetPasswordComponent,
+    ResetPasswordDirectComponent,
+    AssociatioInfoComponent,
+    GestionProfileComponent,
+    UpdateProfileComponent,
+    ListUserComponent,
+    MoreInfoUserComponent,
+    MailboxesComponentComponent,
+    ChartsComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule, 
+    ReactiveFormsModule,
+    RouterModule,
+    OAuthModule.forRoot(),
+
+ 
   ],
-  providers: [],
+    providers: [ AuthGuard,{
+    provide:HTTP_INTERCEPTORS,
+    useClass:AuthInterceptor,
+    multi:true
+  },
+  UserService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
