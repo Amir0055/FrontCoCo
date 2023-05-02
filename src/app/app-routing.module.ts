@@ -5,45 +5,70 @@ import { BodyAdminComponent } from './BackOffice/body-admin/body-admin.component
 import { AllTemplatesAdminComponent } from './BackOffice/all-templates-admin/all-templates-admin.component';
 import { AllTemplateUserComponent } from './FrontOffice/all-template-user/all-template-user.component';
 import { BodyUserComponent } from './FrontOffice/body-user/body-user.component';
-import { CatalogueListComponent } from './components/catalogue-list-component/catalogue-list-component.component';
-import { ProductListComponent } from './components/product-list/product-list.component';
-import { AdminCatalogueListComponent } from './components/admin-catalogue-list/admin-catalogue-list.component';
-import { AdminProductListComponent } from './components/admin-product-list/admin-product-list.component';
-import { AdminAllproductlistComponent } from './components/admin-allproductlist/admin-allproductlist.component';
-import { AddProductToCatalogueComponent } from './components/add-product-to-catalogue/add-product-to-catalogue.component';
-
-
-
-
 
 const routes: Routes = [
+ snoussi
+  {
+    path: 'admin',
+    component: AllTemplatesAdminComponent,
+    children: [
+      {
+        path: 'home',
+        component: BodyAdminComponent,
+      },
+    ],
+  },
+
+  {
+    path: 'user',
+    component: AllTemplateUserComponent,
+    children: [
+      {
+        path: 'home',
+        component: BodyUserComponent,
+      },
+      { path: 'addShop', component: ShopComponent },
+
+      { path: 'allproduit', component: AllProduitComponent },
+      { path: 'allshop', component: AllshopComponent },
+    ],
+  },
+  {path : 'details/:id', component : DetailsComponent} 
+  
   {path:'admin',
    component:AllTemplatesAdminComponent,
   children:[
-    {path:'home',component:BodyAdminComponent},
-    { path: 'catalogues', component: AdminCatalogueListComponent },
-    { path: 'catalogues/:id/produits', component: AdminProductListComponent },
-    { path: 'produits', component: AdminAllproductlistComponent },
-    { path: 'produits/:id', component: AddProductToCatalogueComponent },
+    {
+      path:'home',
+      component:BodyAdminComponent
+    },
   ]
-  }, 
+  },
+
   {path:'user',
    component:AllTemplateUserComponent,
   children:[
-    {path:'home',component:BodyUserComponent},
-    { path: 'catalogues', component: CatalogueListComponent },
-    { path: 'catalogues/:id/produits', component: ProductListComponent }
-
+    {
+      path:'home',
+      component:BodyUserComponent
+    },
   ]
   },
+
+
+ 
+  {path:'forbidden',
+  component:ForbiddenComponent},
+  {path:'NotFound',
+  component:PageNotFoundComponent},
+
+ main
 ];
 
 
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-
-
 export class AppRoutingModule { }

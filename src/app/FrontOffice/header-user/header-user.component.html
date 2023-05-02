@@ -1,4 +1,6 @@
+
 <header class="header-style-1"> 
+
     <div class="header-topbar topbar-style-2">
         <div class="container">
             <div class="row justify-content-between">
@@ -29,7 +31,10 @@
                         </div>
 
                         <div class="header-btn text-center text-lg-end">
-                           <a href="#"> <i class="fa fa-user-alt"></i> Login/Register</a>
+
+                           <a *ngIf="! isLoggedIn()" routerLink="/user/login"> <i class="fa fa-user-alt"></i> Login/Register</a>
+                           <a *ngIf=" isLoggedIn()" routerLink="/user/login" (click)="logout()"> <i class="fa fa-user-alt"></i> Logout</a>
+
                         </div>
                    </div>
                 </div>
@@ -42,12 +47,16 @@
             <div class="d-flex align-items-center justify-content-between">
                 <div class="site-logo">
                     <a href="index.html">
-                        <img src="assets/images/logo.png" alt="" class="img-fluid" />
+
+                        <img src="/assets/FRONT/images/logo.png" alt="" class="img-fluid" />
+
                     </a>
                 </div>
 
                 <div class="offcanvas-icon d-block d-lg-none">
+
                     <a href="#" class="nav-toggler"><i class="fal fa-bars"></i></a> 
+
                 </div>
 
                 <div class="header-category-menu d-none d-xl-block">
@@ -71,18 +80,20 @@
                     </ul>
                 </div>
 
-                <div class="header-search-bar d-none d-xl-block ms-4">
-                    <form action="#">
+                <div  *ngIf=" isLoggedIn()" class="header-search-bar d-none d-xl-block ms-4">
+       <form action="#">
                         <input type="text" class="form-control" placeholder="Search for Course" >
                         <a href="#" class="search-submit"><i class="far fa-search"></i></a>
                     </form>
                  </div>
-        
+
                 <nav class="site-navbar ms-auto">
 
                     <ul class="primary-menu">
                         <li class="current">
-                            <a href="index.html">Home</a>
+
+                            <a  routerLink="/user/addcar">add car</a>
+
                             <ul class="submenu">
                                 <li><a href="index.html">Home One</a></li>
                                 <li><a href="index-2.html">Home Two</a></li>
@@ -142,4 +153,7 @@
         </div>
     </div>
 </header>
+
 <!--====== Header End ======-->
+
+

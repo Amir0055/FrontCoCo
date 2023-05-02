@@ -11,18 +11,6 @@ import { AllTemplateUserComponent } from './FrontOffice/all-template-user/all-te
 import { BodyUserComponent } from './FrontOffice/body-user/body-user.component';
 import { FotterUserComponent } from './FrontOffice/fotter-user/fotter-user.component';
 import { HeaderUserComponent } from './FrontOffice/header-user/header-user.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { CatalogueListComponent } from './components/catalogue-list-component/catalogue-list-component.component';
-import { ProductListComponent } from './components/product-list/product-list.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { AdminCatalogueListComponent } from './components/admin-catalogue-list/admin-catalogue-list.component';
-import { AdminProductListComponent } from './components/admin-product-list/admin-product-list.component';
-import { AdminAllproductlistComponent } from './components/admin-allproductlist/admin-allproductlist.component';
-import { AddProductToCatalogueComponent } from './components/add-product-to-catalogue/add-product-to-catalogue.component';
-
-
-
 
 @NgModule({
   declarations: [
@@ -35,25 +23,14 @@ import { AddProductToCatalogueComponent } from './components/add-product-to-cata
     AllTemplateUserComponent,
     BodyUserComponent,
     FotterUserComponent,
-    HeaderUserComponent,
-    CatalogueListComponent,
-    ProductListComponent,
-    AdminCatalogueListComponent,
-    AdminProductListComponent,
-    AdminAllproductlistComponent,
-    AddProductToCatalogueComponent,
-
+    HeaderUserComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MatSnackBarModule,
-    MatToolbarModule
+    AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
-  exports: [MatToolbarModule]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
 
