@@ -25,8 +25,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "node_modules/leaflet/dist/leaflet.css",
+              "src/styles.css"
+
+
             ],
             "scripts": []
           },
@@ -95,5 +99,12 @@
         }
       }
     }
+
+
+  },
+  "cli": {
+    "analytics": "29171164-1974-45a4-a10e-5434b70858e4"
+
+
   }
 }
